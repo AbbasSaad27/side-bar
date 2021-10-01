@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Cool SideBar</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: rgb(153, 153, 250);
+      }
+      .side-bar {
+        width: 80px;
+        height: 100vh;
+        background-color: #161617;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 15px 16px;
+        transition: all 0.5s;
+        overflow: hidden;
+      }
+      .side-bar:hover {
+        width: 250px;
+      }
+      .content-container {
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ffffff3a;
+      }
+      .menu {
+        padding: 15px 13px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        color: #ffffffc4;
+      }
+      .menu:hover {
+        color: #18af8b;
+      }
+
+      .menu:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      .overview {
+        background-color: #18af8b;
+      }
+      .menu-title {
+        margin-left: 50px;
+        font-size: 12px;
+        font-family: 600;
+        transition: all 0.3s;
+      }
+      .bank-icon {
+        width: 20px;
+        height: 20px;
+      }
+      .white {
+        color: white;
+      }
+      .arrow-icon {
+        width: 8px;
+        height: 8px;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="side-bar">
+      <div class="content-container">
+        <div class="menu overview">
+          <img src="./icons/box.png" alt="" />
+          <p class="menu-title white">Overview</p>
+        </div>
+        <div class="menu business">
+          <img src="./icons/business-icon.png" alt="" />
+          <p class="menu-title">Business</p>
+          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
+        </div>
+
+        <div class="menu banking">
+          <img class="bank-icon" src="./icons/bank.svg" alt="" />
+          <p class="menu-title">Banking</p>
+          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
+        </div>
+
+        <div class="menu business">
+          <img src="./icons/wallet.png" alt="" />
+          <p class="menu-title">Checkout</p>
+          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
+        </div>
+
+        <div class="menu business">
+          <img src="./icons/analytic-icon.png" alt="" />
+          <p class="menu-title">Analytics</p>
+          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
+        </div>
+
+        <div class="menu business">
+          <img src="./icons/resource-icon.png" alt="" />
+          <p class="menu-title">Resources</p>
+          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
+        </div>
+
+        <div class="menu business">
+          <img src="./icons/settings-icon.png" alt="" />
+          <p class="menu-title">Settings</p>
+          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <script>
+      const sideBar = document.querySelector(".side-bar");
+    </script>
+  </body>
+</html>
