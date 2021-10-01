@@ -37,7 +37,7 @@
       .side-bar:hover {
         width: 250px;
       }
-      .content-container {
+      .menu-container {
         padding-bottom: 15px;
         border-bottom: 1px solid #ffffff3a;
       }
@@ -60,6 +60,7 @@
       }
       .overview {
         background-color: #18af8b;
+        cursor: context-menu;
       }
       .menu-title {
         margin-left: 50px;
@@ -79,11 +80,55 @@
         height: 8px;
         margin-left: auto;
       }
+      .deep-menu-container {
+        width: 230px;
+        background-color: #272729;
+        padding: 10px;
+        height: 100vh;
+        padding: 30px;
+        position: absolute;
+        top: 0;
+        left: calc(100% + 16px);
+        transition: all 0.5s;
+      }
+      .deep-menu-active {
+        left: 20px;
+      }
+      .btn {
+        background-color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn:focus {
+        outline-color: #18af8b;
+      }
+      .btn-close {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        position: absolute;
+        left: -16px;
+      }
+
+      .deep-menu {
+        padding: 10px 0 20px 0;
+        border-bottom: 1px solid #ffffff3a;
+        display: none;
+      }
+      .deep-menu-title {
+        color: white;
+        margin-left: 15px;
+        font-size: 16px;
+      }
+
+      .deep-menu-show {
+        display: flex;
+      }
     </style>
   </head>
   <body>
     <div class="side-bar">
-      <div class="content-container">
+      <div class="menu-container">
         <div class="menu overview">
           <img src="./icons/box.png" alt="" />
           <p class="menu-title white">Overview</p>
@@ -124,9 +169,76 @@
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
         </div>
       </div>
+      <div class="deep-menu-container">
+        <button class="btn btn-close">
+          <img class="arrow-right-icon" src="./icons/Arrow-right.png" alt="" />
+        </button>
+
+        <div class="deep-menu business">
+          <img src="./icons/business-icon.png" alt="" />
+          <p class="deep-menu-title">Business</p>
+        </div>
+
+        <div class="deep-menu banking">
+          <img class="bank-icon" src="./icons/bank.svg" alt="" />
+          <p class="deep-menu-title">Banking</p>
+        </div>
+
+        <div class="deep-menu business">
+          <img src="./icons/wallet.png" alt="" />
+          <p class="deep-menu-title">Checkout</p>
+        </div>
+
+        <div class="deep-menu business">
+          <img src="./icons/analytic-icon.png" alt="" />
+          <p class="deep-menu-title">Analytics</p>
+        </div>
+
+        <div class="deep-menu business">
+          <img src="./icons/resource-icon.png" alt="" />
+          <p class="deep-menu-title">Resources</p>
+        </div>
+
+        <div class="deep-menu business">
+          <img src="./icons/settings-icon.png" alt="" />
+          <p class="deep-menu-title">Settings</p>
+        </div>
+      </div>
     </div>
     <script>
+      // const body = document.getElementsByTagName("body")[0];
+
       const sideBar = document.querySelector(".side-bar");
+      const menus = [...document.querySelectorAll(".menu")].slice(1);
+      const deepMenus = [...document.querySelectorAll(".deep-menu")];
+      const deepMenuContainer = document.querySelector(".deep-menu-container");
+      const btnCloseDeepMenuContainer = document.querySelector(".btn-close");
+
+      let activeDeepMenu;
+
+      // for opening the deep menu
+      menus.forEach((menu, i) =>
+        menu.addEventListener("click", function (e) {
+          deepMenuContainer.classList.toggle("deep-menu-active");
+          activeDeepMenu = deepMenus[i];
+          activeDeepMenu.classList.add("deep-menu-show");
+        })
+      );
+
+      // for closing the deep menu
+      btnCloseDeepMenuContainer.addEventListener("click", function (e) {
+        deepMenuContainer.classList.remove("deep-menu-active");
+
+        activeDeepMenu.classList.remove("deep-menu-show");
+      });
+
+      // body.addEventListener("mouseenter", function (e) {
+      //   if (deepMenuContainer.classList.contains("deep-menu-active")) {
+      //     deepMenuContainer.classList.remove("deep-menu-active");
+
+      //     activeDeepMenu.classList.remove("deep-menu-show");
+      //   }
+      // });
     </script>
   </body>
 </html>
