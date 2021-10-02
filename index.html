@@ -43,6 +43,7 @@
       .side-bar:hover,
       .side-bar-active {
         width: 250px;
+        padding: 15px 16px;
       }
 
       .menu-container {
@@ -55,7 +56,7 @@
         align-items: center;
         text-align: center;
         border-radius: 4px;
-        overflow: hidden;
+        overflow-x: hidden;
         cursor: pointer;
         color: #ffffffc4;
       }
@@ -66,9 +67,10 @@
       .menu:not(:last-child) {
         margin-bottom: 20px;
       }
-      .menu-overview {
+      .menu-active,
+      .menu-active:hover {
         background-color: #18af8b;
-        cursor: context-menu;
+        color: white;
       }
 
       .menu-analytics .menu-title,
@@ -236,55 +238,109 @@
       .dropdown-opt {
         padding-left: 50px;
       }
+
+      /* side bar opener */
+      .side-bar-opener {
+        width: 40px;
+        height: 40px;
+        background-color: #161617;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 5px;
+        cursor: pointer;
+        display: none;
+        transition: all 0.5s;
+      }
+      .side-bar-clicked {
+        left: 250px;
+      }
+      .line {
+        width: 80%;
+        margin: 5px auto;
+        height: 3px;
+        background-color: white;
+        transition: all 0.3s;
+      }
+      .line-top {
+        transform: rotate(135deg);
+        margin-top: 15px;
+      }
+      .line-middle {
+        opacity: 0;
+      }
+      .line-bottom {
+        transform: rotate(-135deg);
+        margin-top: -16px;
+      }
+      /* for mobile */
+      @media only screen and (max-width: 410px) {
+        .side-bar-opener {
+          display: block;
+        }
+        .side-bar {
+          width: 0;
+          padding: 0;
+        }
+        .side-bar-active {
+          width: 250px;
+          padding: 15px 16px;
+        }
+      }
     </style>
   </head>
   <body>
+    <div class="side-bar-opener">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
     <nav class="side-bar">
       <ul class="menu-container">
-        <li class="menu menu-overview">
+        <li class="menu menu-overview menu-active">
           <img class="menu-icon" src="./icons/box.png" alt="" />
           <p class="menu-title white">Overview</p>
         </li>
         <li class="menu menu-business">
           <img class="menu-icon" src="./icons/business-icon.png" alt="" />
           <p class="menu-title">Business</p>
-          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-          <!-- <i class="fas fa-angle-right"></i> if you want hover effect in it too then uncomment this and comment the above please(for every menu) :D -->
+          <!-- <img class="arrow-icon" src="./icons/Arrow.png" alt="" /> -->
+          <i class="fas fa-angle-right"></i>
         </li>
 
         <li class="menu menu-banking">
           <img class="bank-icon" src="./icons/bank.svg" alt="" />
           <p class="menu-title">Banking</p>
-          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-          <!-- <i class="fas fa-angle-right"></i> -->
+          <!-- <img class="arrow-icon" src="./icons/Arrow.png" alt="" /> -->
+          <i class="fas fa-angle-right"></i>
         </li>
 
         <li class="menu menu-checkout">
           <img class="menu-icon" src="./icons/wallet.png" alt="" />
           <p class="menu-title">Checkout</p>
-          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-          <!-- <i class="fas fa-angle-right"></i> -->
+          <!-- <img class="arrow-icon" src="./icons/Arrow.png" alt="" /> -->
+          <i class="fas fa-angle-right"></i>
         </li>
 
         <li class="menu menu-analytics">
           <img class="menu-icon" src="./icons/analytic-icon.png" alt="" />
           <p class="menu-title">Analytics</p>
-          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-          <!-- <i class="fas fa-angle-right"></i> -->
+          <!-- <img class="arrow-icon" src="./icons/Arrow.png" alt="" /> -->
+          <i class="fas fa-angle-right"></i>
         </li>
 
         <li class="menu menu-resources">
           <img class="menu-icon" src="./icons/resource-icon.png" alt="" />
           <p class="menu-title">Resources</p>
-          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-          <!-- <i class="fas fa-angle-right"></i> -->
+          <!-- <img class="arrow-icon" src="./icons/Arrow.png" alt="" /> -->
+          <i class="fas fa-angle-right"></i>
         </li>
 
         <li class="menu menu-settings">
           <img class="menu-icon" src="./icons/settings-icon.png" alt="" />
           <p class="menu-title">Settings</p>
-          <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-          <!-- <i class="fas fa-angle-right"></i> -->
+          <!-- <img class="arrow-icon" src="./icons/Arrow.png" alt="" /> -->
+          <i class="fas fa-angle-right"></i>
         </li>
       </ul>
 
@@ -425,6 +481,8 @@
       const dropdownOptions = [
         ...document.querySelectorAll(".dropdown-options"),
       ];
+      const sideBarOpener = document.querySelector(".side-bar-opener");
+      const hamburgerLines = document.querySelectorAll(".line");
 
       let activeDeepMenu;
 
@@ -432,7 +490,7 @@
       menus.forEach((menu, i) =>
         menu.addEventListener("click", function (e) {
           deepMenuOverlay.classList.add("deep-menu-overlay-active");
-          sideBar.classList.add("side-bar-active");
+          if (screen.width > 410) sideBar.classList.add("side-bar-active");
           activeDeepMenu = deepMenus[i];
           activeDeepMenu.classList.add("deep-menu-show");
         })
@@ -442,7 +500,7 @@
       btnCloseDeepMenuOverlay.addEventListener("click", function (e) {
         deepMenuOverlay.classList.remove("deep-menu-overlay-active");
 
-        sideBar.classList.remove("side-bar-active");
+        if (screen.width > 410) sideBar.classList.remove("side-bar-active");
 
         activeDeepMenu.classList.remove("deep-menu-show");
       });
@@ -469,6 +527,15 @@
             opt.classList.remove(`dropdown-options-show-${k + 1}`);
           });
         });
+      });
+
+      // opening side-bar on mobile
+      sideBarOpener.addEventListener("click", function (e) {
+        this.classList.toggle("side-bar-clicked");
+        sideBar.classList.toggle("side-bar-active");
+        ["line-top", "line-middle", "line-bottom"].forEach((cls, i) =>
+          hamburgerLines[i].classList.toggle(cls)
+        );
       });
 
       // body.addEventListener("mouseleave", function (e) {
