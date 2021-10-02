@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/all.min.css" />
 
     <title>Cool SideBar</title>
     <style>
@@ -23,6 +24,11 @@
         font-family: "Inter", sans-serif;
         background-color: rgb(153, 153, 250);
       }
+
+      ul {
+        list-style: none;
+      }
+
       .side-bar {
         width: 80px;
         height: 100vh;
@@ -60,10 +66,21 @@
       .menu:not(:last-child) {
         margin-bottom: 20px;
       }
-      .overview {
+      .menu-overview {
         background-color: #18af8b;
         cursor: context-menu;
       }
+
+      .menu-analytics .menu-title,
+      .menu-resources .menu-title {
+        margin-left: 54px;
+      }
+
+      /* .menu-icon {
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+      } */
       .menu-title {
         margin-left: 50px;
         font-size: 12px;
@@ -149,11 +166,63 @@
         flex-direction: column;
       }
 
+      .dropdown {
+        color: #ffffff;
+        font-size: 12px;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .dropdown-info {
+        padding: 15px 10px;
+        margin-bottom: 10px;
+        transition: all 0.3s;
+        opacity: 0.8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .dropdown-info:hover,
+      .dropdown-info-active {
+        opacity: 1;
+        color: #18af8b;
+      }
+
+      .fa-angle-right {
+        display: inline-block;
+        margin-left: auto;
+        transition: all 0.3s;
+      }
+
+      .dropdown-options {
+        margin-left: -30px;
+        width: 230px;
+        background-color: #4f4f4f;
+        height: 0;
+        transition: all 0.5s;
+        overflow: hidden;
+      }
+
+      .dropdown-options-show-1,
+      .dropdown-options-show-2 {
+        height: 100px;
+      }
+
+      .dropdown-options-show-3,
+      .dropdown-options-show-4 {
+        height: 210px;
+      }
+
+      .dropdown-options-show-5 {
+        height: 155px;
+      }
+
       .option {
         font-size: 12px;
         color: #ffffffc4;
         padding: 15px 10px;
         border-radius: 5px;
+        cursor: pointer;
         transition: all 0.3s;
       }
       .option:hover,
@@ -164,123 +233,184 @@
       .option:not(:last-child) {
         margin-bottom: 10px;
       }
+      .dropdown-opt {
+        padding-left: 50px;
+      }
     </style>
   </head>
   <body>
-    <div class="side-bar">
-      <div class="menu-container">
-        <div class="menu overview">
-          <img src="./icons/box.png" alt="" />
+    <nav class="side-bar">
+      <ul class="menu-container">
+        <li class="menu menu-overview">
+          <img class="menu-icon" src="./icons/box.png" alt="" />
           <p class="menu-title white">Overview</p>
-        </div>
-        <div class="menu business">
-          <img src="./icons/business-icon.png" alt="" />
+        </li>
+        <li class="menu menu-business">
+          <img class="menu-icon" src="./icons/business-icon.png" alt="" />
           <p class="menu-title">Business</p>
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-        </div>
+          <!-- <i class="fas fa-angle-right"></i> if you want hover effect in it too then uncomment this and comment the above please(for every menu) :D -->
+        </li>
 
-        <div class="menu banking">
+        <li class="menu menu-banking">
           <img class="bank-icon" src="./icons/bank.svg" alt="" />
           <p class="menu-title">Banking</p>
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-        </div>
+          <!-- <i class="fas fa-angle-right"></i> -->
+        </li>
 
-        <div class="menu business">
-          <img src="./icons/wallet.png" alt="" />
+        <li class="menu menu-checkout">
+          <img class="menu-icon" src="./icons/wallet.png" alt="" />
           <p class="menu-title">Checkout</p>
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-        </div>
+          <!-- <i class="fas fa-angle-right"></i> -->
+        </li>
 
-        <div class="menu business">
-          <img src="./icons/analytic-icon.png" alt="" />
+        <li class="menu menu-analytics">
+          <img class="menu-icon" src="./icons/analytic-icon.png" alt="" />
           <p class="menu-title">Analytics</p>
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-        </div>
+          <!-- <i class="fas fa-angle-right"></i> -->
+        </li>
 
-        <div class="menu business">
-          <img src="./icons/resource-icon.png" alt="" />
+        <li class="menu menu-resources">
+          <img class="menu-icon" src="./icons/resource-icon.png" alt="" />
           <p class="menu-title">Resources</p>
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-        </div>
+          <!-- <i class="fas fa-angle-right"></i> -->
+        </li>
 
-        <div class="menu business">
-          <img src="./icons/settings-icon.png" alt="" />
+        <li class="menu menu-settings">
+          <img class="menu-icon" src="./icons/settings-icon.png" alt="" />
           <p class="menu-title">Settings</p>
           <img class="arrow-icon" src="./icons/Arrow.png" alt="" />
-        </div>
-      </div>
+          <!-- <i class="fas fa-angle-right"></i> -->
+        </li>
+      </ul>
 
       <!-- deep menu overlay -->
-      <div class="deep-menu-overlay">
+      <nav class="deep-menu-overlay">
         <!-- deep menu container -->
         <div class="deep-menu-container">
           <button type="button" class="btn btn-close">
-            <img
-              class="arrow-right-icon"
-              src="./icons/Arrow-right.png"
-              alt=""
-            />
+            <img class="arrow-right-icon" src="./icons/Arrow-left.png" alt="" />
           </button>
 
           <!-- deep menus -->
-          <div class="deep-menu">
-            <div class="deep-menu-head business">
+          <ul class="deep-menu deep-menu-business">
+            <li class="deep-menu-head">
               <img src="./icons/business-icon.png" alt="" />
               <p class="deep-menu-title">Business</p>
-            </div>
-            <div class="option opt-business-summary">Summary</div>
-            <div class="option opt-banking-reports">Reports</div>
-          </div>
-          <div class="deep-menu">
-            <div class="deep-menu-head banking">
+            </li>
+            <li class="option opt-business-summary">Summary</li>
+            <li class="dropdown dropdown-salesnearn">
+              <div class="dropdown-info">
+                <p class="dropdown-title">Sales and Earns</p>
+                <i class="fas fa-angle-down"></i>
+              </div>
+              <ul class="dropdown-options">
+                <li class="option dropdown-opt">Transaction</li>
+                <li class="option dropdown-opt">Settlements</li>
+              </ul>
+            </li>
+
+            <!-- dropdowns  -->
+            <li class="dropdown dropdown-marketplace">
+              <div class="dropdown-info">
+                <p class="dropdown-title">Market Place Recon</p>
+                <i class="fas fa-angle-down"></i>
+              </div>
+              <ul class="dropdown-options">
+                <li class="option dropdown-opt">Sales Overview</li>
+                <li class="option dropdown-opt">Settlements Overview</li>
+              </ul>
+            </li>
+            <li class="dropdown dropdown-acceptpay">
+              <div class="dropdown-info">
+                <p class="dropdown-title">Accept Payments</p>
+                <i class="fas fa-angle-down"></i>
+              </div>
+              <ul class="dropdown-options">
+                <li class="option dropdown-opt">Payment Links</li>
+                <li class="option dropdown-opt">Payment Invoice</li>
+                <li class="option dropdown-opt">Payment Button</li>
+                <li class="option dropdown-opt">Payment Website</li>
+              </ul>
+            </li>
+            <li class="dropdown dropdown-pay">
+              <div class="dropdown-info">
+                <p class="dropdown-title">Make Payments</p>
+                <i class="fas fa-angle-down"></i>
+              </div>
+              <ul class="dropdown-options">
+                <li class="option dropdown-opt">Fund Transfer</li>
+                <li class="option dropdown-opt">Vendor Payments</li>
+                <li class="option dropdown-opt">Uility Bills</li>
+                <li class="option dropdown-opt">All Beneficiaries</li>
+              </ul>
+            </li>
+            <!-- dropdowns end -->
+            <li class="option opt-banking-reports">Reports</li>
+          </ul>
+          <ul class="deep-menu deep-menu-business">
+            <li class="deep-menu-head">
               <img class="bank-icon" src="./icons/bank.svg" alt="" />
               <p class="deep-menu-title">Banking</p>
-            </div>
-            <div class="option opt-banking-summary">Summary</div>
-            <div class="option opt-curr-acc">Current Account</div>
-            <div class="option opt-card">Cards</div>
-            <div class="option opt-credit">Credit</div>
-          </div>
-          <div class="deep-menu">
-            <div class="deep-menu-head checkout">
+            </li>
+            <li class="option opt-banking-summary">Summary</li>
+            <li class="option opt-curr-acc">Current Account</li>
+            <li class="option opt-card">Cards</li>
+            <li class="option opt-credit">Credit</li>
+          </ul>
+          <ul class="deep-menu deep-menu-checkout">
+            <li class="deep-menu-head">
               <img src="./icons/wallet.png" alt="" />
               <p class="deep-menu-title">Checkout</p>
-            </div>
-            <div class="option opt-checkout-overview">Overview</div>
-            <div class="option opt-customize-checko">Customize Checkout</div>
-            <div class="option opt-payment-opt">Payment Options</div>
-          </div>
-          <div class="deep-menu">
-            <div class="deep-menu-head analytics">
+            </li>
+            <li class="option opt-checkout-overview">Overview</li>
+            <li class="option opt-customize-checko">Customize Checkout</li>
+            <li class="dropdown dropdown-offer-engine">
+              <div class="dropdown-info">
+                <p class="dropdown-title">Offer Engine</p>
+                <i class="fas fa-angle-down"></i>
+              </div>
+              <ul class="dropdown-options">
+                <li class="option dropdown-opt">Fund Transfer</li>
+                <li class="option dropdown-opt">Vendor Payments</li>
+                <li class="option dropdown-opt">Uility Bills</li>
+              </ul>
+            </li>
+            <li class="option opt-payment-opt">Payment Options</li>
+          </ul>
+          <ul class="deep-menu deep-menu-analytics">
+            <li class="deep-menu-head">
               <img src="./icons/analytic-icon.png" alt="" />
               <p class="deep-menu-title">Analytics</p>
-            </div>
-            <div class="option opt-analytics-overview">Overview</div>
-            <div class="option opt-customer-data">Customer Data</div>
-            <div class="option opt-payment-performance">
-              Payment Performance
-            </div>
-          </div>
-          <div class="deep-menu">
-            <div class="deep-menu-head resources">
+            </li>
+            <li class="option opt-analytics-overview">Overview</li>
+            <li class="option opt-customer-data">Customer Data</li>
+            <li class="option opt-payment-performance">Payment Performance</li>
+          </ul>
+          <ul class="deep-menu deep-menu-resources">
+            <li class="deep-menu-head">
               <img src="./icons/resource-icon.png" alt="" />
               <p class="deep-menu-title">Resources</p>
-            </div>
-            <div class="option opt-payu">PayU Product Suite</div>
-            <div class="option opt-ref-earn">Refer and Earn</div>
-            <div class="option opt-event">Events</div>
-          </div>
-          <div class="deep-menu">
-            <div class="deep-menu-head settings">
+            </li>
+            <li class="option opt-payu">PayU Product Suite</li>
+            <li class="option opt-ref-earn">Refer and Earn</li>
+            <li class="option opt-event">Events</li>
+          </ul>
+          <ul class="deep-menu deep-menu-settings">
+            <li class="deep-menu-head">
               <img src="./icons/settings-icon.png" alt="" />
               <p class="deep-menu-title">Settings</p>
-            </div>
-            <div class="option">Manage Users & Permissions</div>
-            <div class="option">Account Settings</div>
-          </div>
+            </li>
+            <li class="option">Manage Users & Permissions</li>
+            <li class="option">Account Settings</li>
+          </ul>
         </div>
-      </div>
-    </div>
+      </nav>
+    </nav>
     <script>
       // const body = document.getElementsByTagName("body")[0];
 
@@ -291,6 +421,10 @@
       const deepMenuOverlay = document.querySelector(".deep-menu-overlay");
       const btnCloseDeepMenuOverlay = document.querySelector(".btn-close");
       const options = [...document.querySelectorAll(".option")];
+      const dropdownOpener = [...document.querySelectorAll(".dropdown-info")];
+      const dropdownOptions = [
+        ...document.querySelectorAll(".dropdown-options"),
+      ];
 
       let activeDeepMenu;
 
@@ -318,6 +452,22 @@
         option.addEventListener("click", function (e) {
           options.forEach((opt) => opt.classList.remove("option-active"));
           this.classList.add("option-active");
+        });
+      });
+
+      // opening dropdowns
+      dropdownOpener.forEach((opener, i) => {
+        opener.addEventListener("click", function (e) {
+          dropdownOptions.forEach((opt, k) => {
+            // checking if the options belongs to the clicked opener
+            if (k === i) {
+              dropdownOpener[k].classList.toggle("dropdown-info-active");
+              opt.classList.toggle(`dropdown-options-show-${k + 1}`);
+              return;
+            }
+            dropdownOpener[k].classList.remove("dropdown-info-active");
+            opt.classList.remove(`dropdown-options-show-${k + 1}`);
+          });
         });
       });
 
