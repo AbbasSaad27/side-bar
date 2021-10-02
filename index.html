@@ -219,6 +219,14 @@
         height: 155px;
       }
 
+      .fa-angle-down {
+        transition: all 0.5s;
+      }
+
+      .angle-down-active {
+        transform: rotate(180deg);
+      }
+
       .option {
         font-size: 12px;
         color: #ffffffc4;
@@ -481,6 +489,7 @@
       const dropdownOptions = [
         ...document.querySelectorAll(".dropdown-options"),
       ];
+      const downAngle = [...document.querySelectorAll(".fa-angle-down")];
       const sideBarOpener = document.querySelector(".side-bar-opener");
       const hamburgerLines = document.querySelectorAll(".line");
 
@@ -521,9 +530,11 @@
             if (k === i) {
               dropdownOpener[k].classList.toggle("dropdown-info-active");
               opt.classList.toggle(`dropdown-options-show-${k + 1}`);
+              downAngle[k].classList.toggle("angle-down-active");
               return;
             }
             dropdownOpener[k].classList.remove("dropdown-info-active");
+            downAngle[k].classList.remove("angle-down-active");
             opt.classList.remove(`dropdown-options-show-${k + 1}`);
           });
         });
